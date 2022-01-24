@@ -103,8 +103,6 @@ P4d::P4d()
    sem = new Sem(0x3da00001);
    serial = new Serial;
    request = new P4Request(serial);
-   stateMailAtStates = new char(1);
-   stateMailAtStates[0] = 0;
 }
 
 P4d::~P4d()
@@ -331,7 +329,8 @@ int P4d::readConfiguration(bool initial)
 
    getConfigItem("tsync", tSync, no);
    getConfigItem("maxTimeLeak", maxTimeLeak, 10);
-   getConfigItem("stateMailStates", stateMailAtStates, "0,1,3,19");
+   // commented out due to segfault (UE)
+   //getConfigItem("stateMailStates", stateMailAtStates, "0,1,3,19");
    getConfigItem("consumptionPerHour", consumptionPerHour, 0);
    getConfigItem("heatingType", heatingType, "P4");
    tell(eloDetail, "The heating type is set to '%s'", heatingType);
