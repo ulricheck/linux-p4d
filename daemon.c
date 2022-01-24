@@ -3035,8 +3035,10 @@ int Daemon::dispatchOther(const char* topic, const char* message)
 
 int Daemon::getConfigItem(const char* name, char*& value, const char* def)
 {
-   free(value);
-   value = nullptr;
+   if (value != nullptr) {
+      free(value);
+      value = nullptr;
+   }
 
    tableConfig->clear();
    tableConfig->setValue("OWNER", myName());
