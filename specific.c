@@ -103,6 +103,8 @@ P4d::P4d()
    sem = new Sem(0x3da00001);
    serial = new Serial;
    request = new P4Request(serial);
+   stateMailAtStates = new char(1);
+   stateMailAtStates[0] = 0;
 }
 
 P4d::~P4d()
