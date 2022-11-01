@@ -938,7 +938,7 @@ int chkDir(const char* path)
    {
       tell(eloAlways, "Creating directory '%s'", path);
 
-      if (mkdir(path, ACCESSPERMS) == -1)
+      if (mkdir(path, (S_IRWXU|S_IRWXG|S_IRWXO)) == -1)
       {
          tell(eloAlways, "Can't create directory '%s'", strerror(errno));
          return fail;
